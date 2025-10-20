@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdullah Shaker - FinTech Backend Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00d4aa;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00d4aa;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0c1427 0%, #1e3a5f 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #00d4aa;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4aa 0%, #6c5ce7 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 212, 170, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #00d4aa;
+        }
+
+        .btn-secondary:hover {
+            background: #00d4aa;
+            color: #0c1427;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #00d4aa 0%, #6c5ce7 100%);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #00d4aa 0%, #6c5ce7 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .about-text h3 {
+            color: #0c1427;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .about-text p {
+            color: #5f6c7b;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d4aa;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #5f6c7b;
+            font-size: 0.9rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #f8fafc;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-left: 4px solid #00d4aa;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 1rem;
+            color: #0c1427;
+        }
+
+        .skill-card p {
+            color: #5f6c7b;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: #f8fafc;
+            color: #00d4aa;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #00d4aa;
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #00d4aa 0%, #6c5ce7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 1rem;
+            color: #0c1427;
+        }
+
+        .project-content p {
+            color: #5f6c7b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: #f8fafc;
+            color: #00d4aa;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            color: #00d4aa;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #0c1427 0%, #1e3a5f 100%);
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 0.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            background: #0c1427;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #00d4aa;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #00b894;
+            transform: translateY(-2px);
+        }
+
+        /* CV Section */
+        .cv {
+            background: white;
+        }
+
+        .cv-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .cv-header {
+            background: linear-gradient(135deg, #00d4aa 0%, #6c5ce7 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .cv-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .cv-content {
+            padding: 2rem;
+        }
+
+        .cv-section {
+            margin-bottom: 2rem;
+        }
+
+        .cv-section h3 {
+            color: #00d4aa;
+            border-bottom: 2px solid #f8fafc;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .cv-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .cv-item h4 {
+            color: #0c1427;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cv-meta {
+            color: #5f6c7b;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-description {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .cv-skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .cv-skill {
+            background: #f8fafc;
+            color: #00d4aa;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .download-cv {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #00d4aa 0%, #6c5ce7 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Abdullah Shaker</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">🏦 FinTech Backend Engineer</div>
+            <h1 class="hero-title">Abdullah Shaker</h1>
+            <p class="hero-description">Backend Engineer with 4+ years of experience designing and scaling fintech/payment solutions. Building secure payment infrastructure that processes billions in transactions.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="mailto:abdullah.shaker2017@gmail.com" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">💳</div>
+                <div class="about-text">
+                    <h3>Passionate about Payment Technology</h3>
+                    <p>Backend Engineer with 4+ years of experience designing and scaling fintech/payment solutions. I started as one of the first employees at MoneyHash, which helps organizations build their payment infrastructure through one Super API.</p>
+                    <p>I've successfully improved transaction success rates by 20-30% across 15+ enterprise clients and built 50+ production-grade integrations with global payment providers across MENA markets.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Payment Integrations</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Enterprise Clients</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">30%</div>
+                            <div class="stat-label">Success Rate Improvement</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🐍</div>
+                    <h3>Backend Development</h3>
+                    <p>Expert in Python and Django for building scalable fintech applications with robust API design and distributed systems architecture.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">Django REST</span>
+                        <span class="tech-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💰</div>
+                    <h3>Payment Systems</h3>
+                    <p>Built 50+ integrations with global payment providers including MPGS, Al Rajhi, Tap, Moyasar, Paystack, Fawry, and more.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Payment APIs</span>
+                        <span class="tech-tag">MPGS</span>
+                        <span class="tech-tag">Stripe</span>
+                        <span class="tech-tag">MoneyHash</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>Database & Storage</h3>
+                    <p>Proficient in PostgreSQL and Redis for high-performance data storage and caching in financial applications.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Database Design</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">☁️</div>
+                    <h3>DevOps & Cloud</h3>
+                    <p>Experience with AWS cloud services, Docker containerization, and CI/CD pipelines for reliable deployments.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">CircleCI</span>
+                        <span class="tech-tag">Git</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔄</div>
+                    <h3>System Architecture</h3>
+                    <p>Designed payment routing systems, error handling frameworks, and scalable distributed systems architecture.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Distributed Systems</span>
+                        <span class="tech-tag">REST APIs</span>
+                        <span class="tech-tag">System Design</span>
+                        <span class="tech-tag">Celery</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3>Monitoring & Analytics</h3>
+                    <p>Implemented comprehensive monitoring and analytics solutions for payment systems performance tracking.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Datadog</span>
+                        <span class="tech-tag">Metabase</span>
+                        <span class="tech-tag">Monitoring</span>
+                        <span class="tech-tag">Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">🔄</div>
+                    <div class="project-content">
+                        <h3>MoneyHash Payment Infrastructure</h3>
+                        <p>Built the core payment routing system at MoneyHash, improving transaction success rates by 20-30% across 15+ enterprise clients. Developed 50+ integrations with global payment providers.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Django</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">Redis</span>
+                            <span class="tag">AWS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://moneyhash.io" target="_blank">Live Platform</a>
+                            <a href="https://linkedin.com/in/abdullah-shaker-b7b836195" target="_blank">LinkedIn Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">⚕️</div>
+                    <div class="project-content">
+                        <h3>Cancer Detection System</h3>
+                        <p>DICOM file processing system for extracting liver images from CT scans and detecting tumors using deep learning and advanced image processing techniques.</p>
+                        <div class="project-tags">
+                            <span class="tag">Django</span>
+                            <span class="tag">Deep Learning</span>
+                            <span class="tag">DICOM</span>
+                            <span class="tag">Image Processing</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/abdullah-shaker" target="_blank">GitHub Profile</a>
+                            <a href="mailto:abdullah.shaker2017@gmail.com">Contact for Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🛒</div>
+                    <div class="project-content">
+                        <h3>E-Commerce Platform</h3>
+                        <p>Full-featured online store with product management, shopping cart, shipping options, and secure payment processing. Built with modern web technologies.</p>
+                        <div class="project-tags">
+                            <span class="tag">Django</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Bootstrap</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">REST API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/abdullah-shaker" target="_blank">GitHub Profile</a>
+                            <a href="mailto:abdullah.shaker2017@gmail.com">Request Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <h3>Payment Provider Integrations</h3>
+                        <p>Comprehensive integration suite with 20+ payment providers including MPGS, Al Rajhi, Tap, Moyasar, Paystack, Fawry, Flutterwave, and more across MENA markets.</p>
+                        <div class="project-tags">
+                            <span class="tag">Payment APIs</span>
+                            <span class="tag">Django REST</span>
+                            <span class="tag">Error Handling</span>
+                            <span class="tag">Provider SDKs</span>
+                            <span class="tag">MENA Markets</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="mailto:abdullah.shaker2017@gmail.com">Case Study Request</a>
+                            <a href="https://linkedin.com/in/abdullah-shaker-b7b836195" target="_blank">LinkedIn Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv" class="section cv">
+        <div class="container">
+            <h2 class="section-title">Curriculum Vitae</h2>
+            <div class="cv-container">
+                <div class="cv-header">
+                    <h1 class="cv-title">Abdullah Shaker</h1>
+                    <p class="cv-subtitle">Backend Engineer - FinTech Specialist</p>
+                    <p>📧 abdullah.shaker2017@gmail.com | 📍 Cairo, Egypt</p>
+                </div>
+                
+                <div class="cv-content">
+                    <div class="cv-section">
+                        <h3>Professional Summary</h3>
+                        <p class="cv-description">Backend Engineer with 4+ years of experience designing and scaling fintech/payment solutions. Proven success in increasing payment transaction success rates for +15 client companies, building 50+ production-grade integrations, and deploying APIs across MENA markets. Strong focus on system design, distributed systems, and secure API development.</p>
+                    </div>
+
+                    <div class="cv-section">
+                        <h3>Work Experience</h3>
+                        <div class="cv-item">
+                            <h4>Backend Developer - MoneyHash</h4>
+                            <p class="cv-meta">Feb 2021 – Present | Remote</p>
+                            <div class="cv-description">
+                                <p>Started as one of the first employees at MoneyHash, an organization that helps organizations build their payment infrastructure with payment gateways through one Super API.</p>
+                                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                    <li>Improved transaction success rate by 20–30% across 15+ enterprise clients by co-developing the payment routing rule system</li>
+                                    <li>Standardized error handling across 20+ payment providers by building a centralized error mapping framework</li>
+                                    <li>Developed and deployed 50+ backend integrations with global and regional payment providers (MPGS, Al Rajhi, Tap, Moyasar, Paystack, Fawry, Flutterwave, Noon, Tabby, etc.)</li>
+                                    <li>Built a dynamic provider capabilities model, reducing engineering involvement and enabling clients to self-manage integrations</li>
+                                    <li>Contributed to the default provider configuration system, cutting engineering overhead for client onboarding</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="cv-item">
+                            <h4>Freelancer - Upwork</h4>
+                            <p class="cv-meta">Jan 2021 – Mar 2021 | Remote</p>
+                            <div class="cv-description">
+                                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                    <li>Designed and developed web applications for international clients</li>
+                                    <li>Built and documented REST APIs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h3>Technical Skills</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem;">Languages & Frameworks</h4>
+                                <div class="cv-skills-list">
+                                    <span class="cv-skill">Python</span>
+                                    <span class="cv-skill">JavaScript</span>
+                                    <span class="cv-skill">Django</span>
+                                    <span class="cv-skill">Django REST</span>
+                                    <span class="cv-skill">SQL</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem;">Databases & Tools</h4>
+                                <div class="cv-skills-list">
+                                    <span class="cv-skill">PostgreSQL</span>
+                                    <span class="cv-skill">Redis</span>
+                                    <span class="cv-skill">Docker</span>
+                                    <span class="cv-skill">Git</span>
+                                    <span class="cv-skill">CircleCI</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <h4 style="margin-bottom: 0.5rem;">Cloud & DevOps</h4>
+                            <div class="cv-skills-list">
+                                <span class="cv-skill">AWS (EC2, S3, RDS)</span>
+                                <span class="cv-skill">Celery</span>
+                                <span class="cv-skill">Datadog</span>
+                                <span class="cv-skill">Metabase</span>
+                                <span class="cv-skill">REST APIs</span>
+                                <span class="cv-skill">Distributed Systems</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h3>Projects</h3>
+                        <div class="cv-item">
+                            <h4>Cancer Detection Process</h4>
+                            <p class="cv-description">DICOM Files for Patients to Extract Liver Images from CT Scans and Detect Tumors using Django, Deep Learning, image processing, and DICOM.</p>
+                        </div>
+                        <div class="cv-item">
+                            <h4>E-Commerce Platform</h4>
+                            <p class="cv-description">Online Store for adding and buying products. Users can view all products and add any of them with the required quantity in a cart that displays shipping options. Built with Django, JavaScript, and Bootstrap.</p>
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h3>Education</h3>
+                        <div class="cv-item">
+                            <h4>B.Sc. Computer Engineering</h4>
+                            <p class="cv-meta">University of Ain Shams, Egypt | Sep 2015 – Sep 2020</p>
+                        </div>
+                        <div class="cv-item">
+                            <h4>Nano Degree</h4>
+                            <p class="cv-meta">Udacity, Egypt | May 2020 – Sep 2020</p>
+                        </div>
+                    </div>
+
+                    <div class="download-cv">
+                        <a href="#" class="download-btn" onclick="window.print(); return false;">
+                            📄 Download/Print CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Let's Build Something Amazing</h2>
+                <p>Based in Cairo, Egypt. Available for backend engineering opportunities in FinTech and payment systems. Let's discuss how we can work together.</p>
+                
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <a href="mailto:abdullah.shaker2017@gmail.com" class="btn btn-primary">Send Message</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="mailto:abdullah.shaker2017@gmail.com" title="Email">📧</a>
+                <a href="https://linkedin.com/in/abdullah-shaker-b7b836195" target="_blank" title="LinkedIn">💼</a>
+                <a href="https://github.com/abdullah-shaker" target="_blank" title="GitHub">🐙</a>
+                <a href="#cv" title="View CV">📄</a>
+            </div>
+            <p>&copy; 2025 Abdullah Shaker. All rights reserved. | Cairo, Egypt</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 23, 42, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
